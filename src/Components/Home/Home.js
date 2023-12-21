@@ -9,6 +9,7 @@ import { API_BASE_URL } from "../../config";
 import axios from "axios";
 
 const Home = () => {
+  var currentdate = new window.Date()
   const [timeSlot, settimeSlot] = useState([
     "1:00 AM",
     "1:15 AM",
@@ -110,7 +111,7 @@ const Home = () => {
             console.log(e.substring(0, e.indexOf(':')) , new window.Date().getHours());
             return (
               <>
-                {checkSlot(data.slotDate, e) != undefined ||  e.substring(0, e.indexOf(':')) < new window.Date().getHours()
+                {checkSlot(data.slotDate, e) != undefined ||  e.substring(0, e.indexOf(':')) < currentdate.getHours() && data.slotDate == currentdate.getDate()+"-"+parseInt(currentdate.getMonth()+1)+"-"+currentdate.getFullYear()
                   ? ""
                   : <Button
                     variant="outlined"
